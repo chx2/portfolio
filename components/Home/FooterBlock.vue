@@ -18,7 +18,7 @@ export default {
     }
   },
   async created() {
-    let quote = await this.$axios.$get('http://api.quotable.io/random');
+    let quote = await this.$axios.$get('https://api.quotable.io/random');
     this.quote = quote.content;
     this.author = '-' + quote.author;
   }
