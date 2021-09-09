@@ -1,6 +1,6 @@
 <template>
     <div class="bg-gray-800 min-h-screen overflow-x-hidden">
-        <Logo />
+        <Logo class="hidden md:block" />
         <TopBar />
         <Nuxt />
     </div>

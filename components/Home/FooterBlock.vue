@@ -1,6 +1,6 @@
 <template>
   <footer class="relative">
-    <div class="absolute w-96 left-64 top-32 text-white text-2xl">
+    <div class="block md:absolute w-96 left-64 top-32 text-white text-2xl">
       <h3 class="italic">{{ quote }}</h3>
       <h3 class="mt-4">{{ author }}</h3>
     </div>

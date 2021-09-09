@@ -4,11 +4,11 @@
           <div class="w-full">
             <div class="background p-32 absolute w-full shadow-2xl left-0"
                  :style="`background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/blog/${ article.thumbnail }')`">
-              <h1 class="text-white text-6xl text-center m-4">{{ article.title }}</h1>
-              <h2 class="text-white text-xl text-center">Published on {{ $dayjs(article.createdAt).format('MM/DD/YYYY') }}</h2>
+              <h1 class="text-white hidden md:block text-6xl text-center m-4">{{ article.title }}</h1>
+              <h2 class="text-white hidden md:block text-xl text-center">Published on {{ $dayjs(article.createdAt).format('MM/DD/YYYY') }}</h2>
             </div>
             <div class="p-4 md:p-0 md:mt-64 md:pt-16">
-              <nuxt-content class="mt-96 pt-32 md:pt-0 md:mt-32 prose prose-sm sm:prose lg:prose-lg xl:prose-2xl" :document="article" />
+              <nuxt-content class="mt-32 pt-32 md:pt-0 md:mt-32 prose prose-sm sm:prose lg:prose-lg xl:prose-2xl" :document="article" />
             </div>
             <hr class="pt-4 pb-4"/>
             <h2 class="text-4xl text-center m-4" v-if="prev || next">Other Articles</h2>
