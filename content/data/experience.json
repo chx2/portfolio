@@ -1,0 +1,49 @@
+{
+	"name": "Experience",
+  "data": [
+    {
+      "name": "Full-Stack Developer",
+      "org": "IMT Insurance",
+      "start": "2020",
+      "end": "Current",
+      "tasks": [
+        "Building front-end applications in Vue tying into Laravel microservices",
+        "Assisting development team with maintaining existing API services",
+        "Working with legacy development team to advocate for modern programming practices"
+      ]
+    },
+    {
+      "name": "Teaching Assistant",
+      "org": "Trilogy Education",
+      "start": "2020",
+      "end": "Current",
+      "tasks": [
+        "Assisting students with coursework in full-stack JavaScript courses",
+        "Working with fellow TA’s and professor to craft lesson plans",
+        "Providing helpful feedback for students through coursework and in-class assignments"
+      ]
+    },
+    {
+      "name": "Web Application Developer",
+      "org": "Amplimark LLC",
+      "start": "2019",
+      "end": "2020",
+      "tasks": [
+        "Converted wireframes/markups into functioning websites/applications",
+        "Consulted clients to discuss requirements during application planning phases",
+        "Maintained existing client sites/applications through request updates to layout and/or functionality"
+      ]
+    },
+    {
+      "name": "Website Coordinator",
+      "org": "Choice Genetics USA",
+      "start": "2018",
+      "end": "2019",
+      "tasks": [
+        "Presented website statistics in monthly status reports",
+        "Trained editors on basics of WordPress, SEO, and content writing",
+        "Developed solutions in HTML/CSS to enhance site design"
+      ]
+    }
+  ]
+}

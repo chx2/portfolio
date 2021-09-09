@@ -1,0 +1,54 @@
+{
+  "name": "Skills",
+  "data": [
+    {
+      "name": "Languages",
+      "skills": [
+        "HTML5",
+        "CSS3/SASS",
+        "JavaScript/ES6",
+        "PHP",
+        "Perl",
+        "Python"
+      ]
+    },
+    {
+      "name": "Databases",
+      "skills": [
+        "MySQL/MariaDB",
+        "SQL Server",
+        "PostgreSQL",
+        "MongoDB",
+        "Firebase"
+      ]
+    },
+    {
+      "name": "Frameworks",
+      "skills": [
+        "Vue",
+        "React",
+        "Alpine",
+        "Bootstrap",
+        "Materialize/Vuetify",
+        "Bulma",
+        "Laravel",
+        "Symfony",
+        "Django",
+        "Express.js",
+        "Jest"
+      ]
+    },
+    {
+      "name": "Software",
+      "skills": [
+        "Microsoft Office Suite",
+        "GitHub/GitLab",
+        "AWS-EC2/S3",
+        "Heroku",
+        "Laravel Forge",
+        "WordPress",
+        "Adsense/Analytics"
+      ]
+    }
+  ]
+}

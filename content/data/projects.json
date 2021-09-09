@@ -1,0 +1,39 @@
+{
+  "name": "Projects",
+  "data": [
+    {
+      "name": "Portfolio",
+      "url": "https://chrish.me",
+      "url_short": "chrish.me",
+      "skills": [
+        "Vue",
+        "Tailwind",
+        "Alpine.js",
+        "WordPress"
+      ],
+      "description": "Created & maintaining personal platform listing personal experience including personal blog and all Laravel projects I maintain."
+    },
+    {
+      "name": "Budget.io",
+      "url": "https://github.com/chx2/Budget.io",
+      "url_short": "github.com/chx2/Budget.io",
+      "skills": [
+        "Vue",
+        "Inertia.js",
+        "Laravel"
+      ],
+      "description": "Created & maintaining open-source application for managing personal budgets built in Laravel using Inertia.js integrations with Vue.js."
+    },
+    {
+      "name": "Tipoff",
+      "url": "https://github.com/tipoff",
+      "url_short": "github.com/tipoff",
+      "skills": [
+        "Laravel",
+        "Inertia.js",
+        "Livewire"
+      ],
+      "description": "Contributing to open-source repositories that act as a full suite for escape rooms. This includes escape room management, an online ecommerce solution, and support for a main site/blog."
+    }
+  ]
+}
