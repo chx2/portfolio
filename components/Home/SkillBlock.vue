@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full md:w-4/5 mx-auto mt-64">
+    <div class="w-full md:w-4/5 mx-auto mt-96">
         <div class="w-full p-8 md:flex text-white">
             <div class="w-full relative md:w-1/3">
                 <p :class="`${animations[Math.floor((Math.random() *  animations.length))]} hidden md:inline-block text-lg m-1`" v-for="(term, index) in terms" :key="index">
