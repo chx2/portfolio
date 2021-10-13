@@ -35,7 +35,8 @@
         "Symfony",
         "Django",
         "Express.js",
-        "Jest"
+        "Jest",
+        "Cypress"
       ]
     },
     {
@@ -45,6 +46,7 @@
         "GitHub/GitLab",
         "AWS-EC2/S3",
         "Heroku",
+        "Docker",
         "Laravel Forge",
         "WordPress",
         "Adsense/Analytics"

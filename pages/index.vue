@@ -2,6 +2,7 @@
     <div>
         <LandingBlocks />
         <SkillBlock />
+        <ContactBlock />
         <FooterBlock />
     </div>
 </template>
@@ -10,9 +11,10 @@
 import LandingBlocks from "../components/Home/LandingBlocks";
 import SkillBlock from "../components/Home/SkillBlock";
 import FooterBlock from "../components/Home/FooterBlock";
+import ContactBlock from "../components/Home/ContactBlock";
 
 export default {
-    components: {FooterBlock, SkillBlock, LandingBlocks},
+    components: {ContactBlock, FooterBlock, SkillBlock, LandingBlocks},
     layout: 'index',
     head () {
       return {
