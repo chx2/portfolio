@@ -153,6 +153,11 @@ export default {
     .nuxt-content iframe {
         width: 100%;
     }
+    .nuxt-content blockquote {
+        background: rgba(31, 41, 55, var(--tw-bg-opacity));
+        color: white;
+        padding: 2rem;
+    }
     .nuxt-content img {
         margin: 2rem auto 2rem auto;
         max-height: 600px;
