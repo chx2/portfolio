@@ -1,5 +1,5 @@
 <template>
-    <div class="md:flex">
+    <div class="md:flex mb-96">
         <div class="bg-gray-900 z-0 mt-16 w-full shadow-2xl rounded-r md:w-1/2 p-8 flex justify-center items-center flex-col text-white animate__animated animate__slideInLeft">
             <h1 class="text-4xl mb-4">Hello, I'm Chris.</h1>
             <h2 class="text-2xl animate__animated animate__fadeInLeft animate__delay-1s">Full-Stack Developer</h2>

@@ -8,6 +8,8 @@
       "end": "Current",
       "tasks": [
         "Building full-stack applications using Vue to tie into backend microservices built in Laravel and Django",
+        "Contributing reusable components into in-house component framework to align with brand styling",
+        "Participating in bi-weekly retrospective meetings to discuss development strengths and weaknesses to improve development existing projects",
         "Providing feedback to other developers through a code review process from both a developer and quality assurance perspective",
         "Working with legacy development teams to advocate for modern programming practices"
       ]
