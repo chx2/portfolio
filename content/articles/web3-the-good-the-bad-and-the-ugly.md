@@ -26,6 +26,8 @@ The most straight-forward explanation I can explain comes straight from the [web
 - Online exchanges of information and value are decentralized
 ```
 
+<img src="/images/blog/bigtech.png" alt="Big Tech" />
+
 A common consensus I found when trying to understand what the true purpose of introducing web3 concepts tended to revolve around the devil's advocates of web2(What we consider the web as right now).
 Most of us consider companies such influences being Amazon, Google, Facebook, Apple, Spotify and Twitter to name a short few.
 While these platforms in retrospect may have brought advancement to the web over the years, many often find it discouraging how these companies keep a stranglehold on the web through:
