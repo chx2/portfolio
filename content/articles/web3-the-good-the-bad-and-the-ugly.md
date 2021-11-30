@@ -15,8 +15,6 @@ From projects with a legitimate purpose such as Ethereum to the infamous Dogecoi
 While cryptocurrencies are nothing new, most of the technology that comes bundled in with the definition of Web3 are not inherently new concepts in terms of the development of the web.
 Concepts like P2P apps, crypto-based payments, NFTs, and Blockchain have been around, but over the course of the last year, have propelled us into the era of Web3.
 
-<img src="/images/blog/blockchain.jpg" alt="Blockchain" />
-
 ## What is Web3?
 
 What exactly is Web3? This definition may be different depend on whom you ask that's utilizing aspects of it already.
@@ -27,8 +25,6 @@ The most straight-forward explanation I can explain comes straight from the [web
 - Global digital transactions are secure
 - Online exchanges of information and value are decentralized
 ```
-
-<img src="/images/blog/bigtech.png" alt="Big Tech" />
 
 A common consensus I found when trying to understand what the true purpose of introducing web3 concepts tended to revolve around the devil's advocates of web2(What we consider the web as right now).
 Most of us consider companies such influences being Amazon, Google, Facebook, Apple, Spotify and Twitter to name a short few.
