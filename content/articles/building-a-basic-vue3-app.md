@@ -270,7 +270,7 @@ in the right direction of the changes coming to the framework. While it took som
 to learn my way into the changes with Vue 3. Coupled with the features of Supabase, both came together surprisingly well, giving
 me the ability to not only build a base application, but also to provide the tools to expand the app over time!
 
-If you are interested in checking out the application, you can see it [live here](https://ponder-chx2.vercel.app/)! As of now, 
+If you are interested in checking out the application, you can see it [live here](https://ponder-app.org/)! As of now, 
 you can already begin submitting your own questions as well as diving in to what Ponder has to offer for now! Currently, here is the development roadmap:
 
 1. Look into an official domain
