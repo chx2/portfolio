@@ -21,7 +21,7 @@
     "core-js": "^3.21.1",
     "esm": "^3.2.25",
     "nuxt": "^2.15.7",
-    "postcss": "^8.4.7",
+    "postcss": "^8.4.8",
     "ss-search": "^1.6.1"
   },
   "devDependencies": {
