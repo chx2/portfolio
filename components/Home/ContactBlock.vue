@@ -23,7 +23,7 @@
         <textarea rows="1" maxlength="500" class="shadow appearance-none border-b bg-gray-800 w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline" id="message" placeholder="Enter your message..." name="message" />
       </div>
 
-      <button type="submit" class="contact bg-black w-1/2 duration-100 cursor-pointer text-white shadow-2xl mt-4 mx-auto p-4 flex justify-center items-center flex-col text-white">
+      <button type="submit" class="contact bg-gray-900 w-1/2 duration-100 cursor-pointer text-white shadow-2xl mt-4 mx-auto p-4 flex justify-center items-center flex-col text-white">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
         </svg>
