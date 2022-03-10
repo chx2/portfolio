@@ -13,15 +13,15 @@
       "description": "Created & maintaining personal platform listing experience, projects, and my personal blog."
     },
     {
-      "name": "Budget.io",
-      "url": "https://github.com/chx2/Budget.io",
-      "url_short": "github.com/chx2/Budget.io",
+      "name": "Ponder",
+      "url": "https://ponder-app.org/",
+      "url_short": "ponder-app.org",
       "skills": [
-        "Vue",
-        "Inertia.js",
-        "Laravel"
+        "Vue(Composition)",
+        "Tailwind",
+        "Supabase"
       ],
-      "description": "Created & maintaining open-source application for managing personal budgets built in Laravel using Inertia.js integrations with Vue.js."
+      "description": "Created & maintaining open-source application for creating and playing randomized trivia."
     },
     {
       "name": "Tipoff",
@@ -32,7 +32,7 @@
         "Inertia.js",
         "Livewire"
       ],
-      "description": "Contributing to open-source repositories that act as a full suite for escape rooms. This includes escape room management, an online ecommerce solution, and support for a main site/blog."
+      "description": "Contributed to open-source repositories that act as a full suite for escape rooms. This includes escape room management, an online ecommerce solution, and support for a main site/blog."
     }
   ]
 }
