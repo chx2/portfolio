@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="md:flex" v-show="loaded">
+        <div class="md:flex">
             <div class="w-full md:w-1/2">
                 <div class="bg-gray-900 z-0 rounded-r p-16 flex justify-center items-center flex-col text-white animate__animated animate__slideInLeft">
                     <h1 class="text-4xl mb-4">Hello, I'm Chris.</h1>
@@ -18,8 +18,8 @@
                     </div>
                 </div>
                 <div class="slider animate__animated animate__fadeInRight animate__delay-3s">
-                    <div class="slide-track" v-if="skills.length">
-                        <div class="slide" v-for="(skill, skillIndex) in sort(skills[0].data)" :key="skillIndex">
+                    <div class="slide-track">
+                        <div class="slide" v-for="(skill, skillIndex) in sort(skills)" :key="skillIndex">
                             <img :src="`/images/skills/${skill.thumbnail}`" :alt="skill.name" />
                         </div>
                     </div>
@@ -40,12 +40,109 @@ export default {
     data() {
         return {
             loaded: null,
-            skills: {}
+            skills: [
+                {
+                    "name": "HTML5",
+                    "thumbnail": "html5.webp"
+                },
+                {
+                    "name": "CSS3/SASS",
+                    "thumbnail": "css3.png"
+                },
+                {
+                    "name": "SASS",
+                    "thumbnail": "sass.png"
+                },
+                {
+                    "name": "JavaScript/ES6",
+                    "thumbnail": "js.png"
+                },
+                {
+                    "name": "PHP",
+                    "thumbnail": "php.png"
+                },
+                {
+                    "name": "Python",
+                    "thumbnail": "python.png"
+                },
+                {
+                    "name": "MySQL/MariaDB",
+                    "thumbnail": "mysql.png"
+                },
+                {
+                    "name": "PostgreSQL",
+                    "thumbnail": "pgsql.png"
+                },
+                {
+                    "name": "Supabase",
+                    "thumbnail": "supabase.png"
+                },
+                {
+                    "name": "Vue",
+                    "thumbnail": "vue.png"
+                },
+                {
+                    "name": "React",
+                    "thumbnail": "react.png"
+                },
+                {
+                    "name": "Alpine",
+                    "thumbnail": "alpine.png"
+                },
+                {
+                    "name": "Bootstrap",
+                    "thumbnail": "bootstrap.png"
+                },
+                {
+                    "name": "Vuetify",
+                    "thumbnail": "vuetify.png"
+                },
+                {
+                    "name": "Laravel",
+                    "thumbnail": "laravel.png"
+                },
+                {
+                    "name": "Symfony",
+                    "thumbnail": "symfony.png"
+                },
+                {
+                    "name": "Django",
+                    "thumbnail": "django.png"
+                },
+                {
+                    "name": "Jest",
+                    "thumbnail": "jest.png"
+                },
+                {
+                    "name": "Cypress",
+                    "thumbnail": "cypress.png"
+                },
+                {
+                    "name": "GitHub",
+                    "thumbnail": "github.png"
+                },
+                {
+                    "name": "GitLab",
+                    "thumbnail": "gitlab.svg"
+                },
+                {
+                    "name": "AWS-EC2/S3",
+                    "thumbnail": "ec2.svg"
+                },
+                {
+                    "name": "Heroku",
+                    "thumbnail": "heroku.webp"
+                },
+                {
+                    "name": "Docker",
+                    "thumbnail": "docker.webp"
+                },
+                {
+                    "name": "WordPress",
+                    "thumbnail": "wp.png"
+                }
+            ]
         }
-    },
-    async created() {
-        this.skills = await this.$content('data').where({ name: 'Skills' }).limit(1).fetch()
-        this.loaded = true
     },
     methods: {
         sort(array) {
