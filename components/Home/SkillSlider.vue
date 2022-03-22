@@ -1,7 +1,7 @@
 <template>
     <div class="slider animate__animated animate__fadeInRight animate__delay-3s">
         <div class="slide-track">
-            <div class="slide" v-for="(skill, skillIndex) in sort(skills)" :key="skillIndex">
+            <div class="slide" v-for="(skill, skillIndex) in sortedSkills" :key="skillIndex">
                 <img height="80" width="80" :src="require(`static/images/skills/${skill.thumbnail}`)" :alt="skill.name" />
             </div>
         </div>
@@ -11,6 +11,11 @@
 <script>
 export default {
     name: "SkillSlider",
+    computed: {
+        sortedSkills() {
+            return this.sort(this.skills)
+        }
+    },
     data() {
         return {
             skills: [
