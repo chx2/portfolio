@@ -160,6 +160,7 @@ export default {
 
     .slide-track {
         height: 100px;
+        will-change: transform;
         animation: scroll 30s linear infinite;
         animation-direction: alternate;
         display: flex;
