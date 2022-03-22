@@ -2,55 +2,104 @@
   "name": "Skills",
   "data": [
     {
-      "name": "Languages",
-      "skills": [
-        "HTML5",
-        "CSS3/SASS",
-        "JavaScript/ES6",
-        "PHP",
-        "Perl",
-        "Python"
-      ]
+      "name": "HTML5",
+      "thumbnail": "html5.webp"
     },
     {
-      "name": "Databases",
-      "skills": [
-        "MySQL/MariaDB",
-        "SQL Server",
-        "PostgreSQL",
-        "MongoDB",
-        "Firebase"
-      ]
+      "name": "CSS3/SASS",
+      "thumbnail": "css3.png"
     },
     {
-      "name": "Frameworks",
-      "skills": [
-        "Vue",
-        "React",
-        "Alpine",
-        "Bootstrap",
-        "Materialize/Vuetify",
-        "Bulma",
-        "Laravel",
-        "Symfony",
-        "Django",
-        "Express.js",
-        "Jest",
-        "Cypress"
-      ]
+      "name": "SASS",
+      "thumbnail": "sass.png"
     },
     {
-      "name": "Software",
-      "skills": [
-        "Microsoft Office Suite",
-        "GitHub/GitLab",
-        "AWS-EC2/S3",
-        "Heroku",
-        "Docker",
-        "Laravel Forge",
-        "WordPress",
-        "Adsense/Analytics"
-      ]
+      "name": "JavaScript/ES6",
+      "thumbnail": "js.png"
+    },
+    {
+      "name": "PHP",
+      "thumbnail": "php.png"
+    },
+    {
+      "name": "Python",
+      "thumbnail": "python.png"
+    },
+    {
+      "name": "MySQL/MariaDB",
+      "thumbnail": "mysql.png"
+    },
+    {
+      "name": "PostgreSQL",
+      "thumbnail": "pgsql.png"
+    },
+    {
+      "name": "Supabase",
+      "thumbnail": "supabase.png"
+    },
+    {
+      "name": "Vue",
+      "thumbnail": "vue.png"
+    },
+    {
+      "name": "React",
+      "thumbnail": "react.png"
+    },
+    {
+      "name": "Alpine",
+      "thumbnail": "alpine.png"
+    },
+    {
+      "name": "Bootstrap",
+      "thumbnail": "bootstrap.png"
+    },
+    {
+      "name": "Vuetify",
+      "thumbnail": "vuetify.png"
+    },
+    {
+      "name": "Laravel",
+      "thumbnail": "laravel.png"
+    },
+    {
+      "name": "Symfony",
+      "thumbnail": "symfony.png"
+    },
+    {
+      "name": "Django",
+      "thumbnail": "django.png"
+    },
+    {
+      "name": "Jest",
+      "thumbnail": "jest.png"
+    },
+    {
+      "name": "Cypress",
+      "thumbnail": "cypress.png"
+    },
+    {
+      "name": "GitHub",
+      "thumbnail": "github.png"
+    },
+    {
+      "name": "GitLab",
+      "thumbnail": "gitlab.svg"
+    },
+    {
+      "name": "AWS-EC2/S3",
+      "thumbnail": "ec2.svg"
+    },
+    {
+      "name": "Heroku",
+      "thumbnail": "heroku.webp"
+    },
+    {
+      "name": "Docker",
+      "thumbnail": "docker.webp"
+    },
+    {
+      "name": "WordPress",
+      "thumbnail": "wp.png"
     }
   ]
 }
