@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="md:flex" v-if="!loading">
+        <div class="md:flex" v-show="loaded">
             <div class="w-full md:w-1/2">
                 <div class="bg-gray-900 z-0 rounded-r p-16 flex justify-center items-center flex-col text-white animate__animated animate__slideInLeft">
                     <h1 class="text-4xl mb-4">Hello, I'm Chris.</h1>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="slider animate__animated animate__fadeInRight animate__delay-3s">
-                    <div class="slide-track">
+                    <div class="slide-track" v-if="skills.length">
                         <div class="slide" v-for="(skill, skillIndex) in sort(skills[0].data)" :key="skillIndex">
                             <img :src="`/images/skills/${skill.thumbnail}`" :alt="skill.name" />
                         </div>
@@ -39,13 +39,13 @@ export default {
     layout: 'index',
     data() {
         return {
-            loading: true,
+            loaded: null,
             skills: {}
         }
     },
     async created() {
         this.skills = await this.$content('data').where({ name: 'Skills' }).limit(1).fetch()
-        this.loading = false
+        this.loaded = true
     },
     methods: {
         sort(array) {
