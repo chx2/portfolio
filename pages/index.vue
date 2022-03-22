@@ -20,7 +20,7 @@
                 <div class="slider animate__animated animate__fadeInRight animate__delay-3s">
                     <div class="slide-track">
                         <div class="slide" v-for="(skill, skillIndex) in sort(skills)" :key="skillIndex">
-                            <img :src="`/images/skills/${skill.thumbnail}`" :alt="skill.name" />
+                            <img :src="require(`../static/images/skills/${skill.thumbnail}`)" :alt="skill.name" />
                         </div>
                     </div>
                 </div>
