@@ -374,8 +374,6 @@ function handleOption(opt: Option) {
                   <circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1" />
                   <circle :cx="8 + pupilOffset.x" :cy="8 + pupilOffset.y" r="1.2" fill="currentColor" />
                 </svg>
-                <!-- Question mark popup on eye hover -->
-                <span aria-hidden="true" class="eye-tooltip">?</span>
               </span>
               <span class="flex-1 font-mono text-sm text-gray-500 group-hover:text-gray-400 transition-colors">
                 Ask me something&hellip;
@@ -502,26 +500,6 @@ function handleOption(opt: Option) {
 <style scoped>
 .eye-wrapper {
   display: inline-flex;
-}
-
-.eye-tooltip {
-  position: absolute;
-  top: -2px;
-  left: calc(100% + 2px);
-  font-family: monospace;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--color-primary, #a78bfa);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(4px);
-  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.eye-wrapper:hover .eye-tooltip {
-  opacity: 1;
-  transform: translateY(-6px);
 }
 
 @keyframes dotBounce {
