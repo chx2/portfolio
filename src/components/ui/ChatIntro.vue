@@ -5,18 +5,16 @@ import gsap from 'gsap'
 const emit = defineEmits<{ done: [query: string] }>()
 
 const QUERIES: string[] = [
-  'who is chris hackett?',
-  'show me chris hackett',
-  'tell me about chris hackett',
-  'what does chris hackett build?',
-  'chris hackett portfolio',
-  'find chris hackett',
-  'what can chris hackett do?',
-  'describe chris hackett',
-  'who built this?',
-  'chris hackett — software engineer',
-  'launch portfolio for chris hackett',
-  'introduce me to chris hackett',
+  'Who is chris hackett?',
+  'Tell me about chris hackett',
+  'What does chris hackett build?',
+  'Chris hackett portfolio',
+  'What can chris hackett do?',
+  'Describe chris hackett',
+  'Who built this?',
+  'Chris hackett — software engineer',
+  'Launch portfolio for chris hackett',
+  'Introduce me to chris hackett',
 ]
 
 const PROCESSING_PHRASES: string[] = [
@@ -30,11 +28,11 @@ const PROCESSING_PHRASES: string[] = [
   'Finalizing results...',
   'Cross-referencing projects...',
   'Calibrating responses...',
-  'Deploying portfolio...',
   'Fetching career history...',
   'Building skill tree...',
   'Processing request...',
   'Gathering evidence...',
+  'Vibing with the code...',
 ]
 
 function pick<T>(arr: T[]): T {
@@ -73,7 +71,6 @@ function startTyping() {
       i++
       schedule(typeNext, CHAR_DELAY + Math.random() * 15)
     } else {
-      // Pause, then "send"
       schedule(sendQuery, 250)
     }
   }
@@ -97,16 +94,19 @@ function startProcessing() {
     i++
     if (i < processingPhrases.length) {
       currentProcessingPhrase.value = processingPhrases[i]
-      schedule(nextPhrase, 500)
+      schedule(nextPhrase, 900)
     } else {
-      // Done — fade out
+      // Done — slide bubble up, then fade out overlay
       schedule(() => {
-        gsap.to(overlayRef.value, {
-          opacity: 0,
-          duration: 0.6,
-          ease: 'power2.inOut',
-          onComplete: () => emit('done', selectedQuery),
-        })
+        phase.value = 'done'
+        schedule(() => {
+          gsap.to(overlayRef.value, {
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power2.inOut',
+            onComplete: () => emit('done', selectedQuery),
+          })
+        }, 350)
       }, 500)
     }
   }
@@ -128,15 +128,10 @@ onUnmounted(() => timeouts.forEach(clearTimeout))
     <!-- Chat input (typing phase) -->
     <Transition name="slide-up">
       <div v-if="phase === 'typing' || phase === 'sent'" class="w-full max-w-lg">
-        <p class="font-mono text-xs text-gray-600 mb-2 tracking-widest uppercase" aria-hidden="true">Ask anything</p>
         <div
           class="flex items-center gap-3 rounded-xl border px-4 py-3.5 shadow-lg shadow-black/40 transition-colors duration-300"
           :class="phase === 'sent' ? 'border-primary/40 bg-card' : 'border-white/10 bg-card'"
         >
-          <span class="relative flex h-2 w-2 shrink-0">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-            <span class="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-          </span>
           <span class="flex-1 font-mono text-sm text-gray-200 min-h-[1.25rem]">
             {{ typedText
             }}<span
@@ -204,7 +199,7 @@ onUnmounted(() => timeouts.forEach(clearTimeout))
   </div>
 </template>
 
-<style scoped>
+<style>
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -214,6 +209,9 @@ onUnmounted(() => timeouts.forEach(clearTimeout))
   0%, 80%, 100% { transform: translateY(0); }
   40% { transform: translateY(-5px); }
 }
+</style>
+
+<style scoped>
 
 /* Input slides up when processing begins */
 .slide-up-leave-active {
@@ -224,13 +222,20 @@ onUnmounted(() => timeouts.forEach(clearTimeout))
   transform: translateY(-10px);
 }
 
-/* Processing bubble rises in */
+/* Processing bubble rises in, then fades up on done */
 .bubble-in-enter-active {
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 .bubble-in-enter-from {
   opacity: 0;
   transform: translateY(8px);
+}
+.bubble-in-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.bubble-in-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
 /* Phrase swap */

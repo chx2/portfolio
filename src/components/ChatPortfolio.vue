@@ -4,7 +4,6 @@ import { projects, type Project } from '@/data/projects'
 import { experience, type Experience } from '@/data/experience'
 import { skills, type SkillGroup } from '@/data/skills'
 import { about } from '@/data/about'
-import TypewriterText from '@/components/ui/TypewriterText.vue'
 import ThemeToggle from '@/components/ui/ThemeToggle.vue'
 
 const props = defineProps<{ query: string }>()
@@ -45,12 +44,14 @@ interface ContactMessage {
   type: 'contact'
 }
 type Message = TextMessage | ProjectsMessage | ExperienceMessage | SkillsMessage | ContactMessage
+type Option = 'projects' | 'experience' | 'skills' | 'whoami' | 'contact'
 
 const messages = ref<Message[]>([])
 const isResponding = ref(true)
 const isPickerOpen = ref(false)
 const messagesEl = ref<HTMLElement | null>(null)
 const usedOptions = ref(new Set<string>(['whoami']))
+const sectionMessageIds = ref<Partial<Record<Option, number>>>({})
 
 const eyeEl = ref<SVGElement | null>(null)
 const mouseX = ref(0)
@@ -77,6 +78,44 @@ function onMouseMove(e: MouseEvent) {
 onUnmounted(() => window.removeEventListener('mousemove', onMouseMove))
 
 
+function pickerBeforeEnter(el: Element) {
+  const h = el as HTMLElement
+  h.style.height = '0'
+  h.style.opacity = '0'
+  h.style.overflow = 'hidden'
+}
+
+function pickerEnter(el: Element, done: () => void) {
+  const h = el as HTMLElement
+  const height = h.scrollHeight
+  requestAnimationFrame(() => {
+    h.style.transition = 'height 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.26s ease'
+    h.style.height = height + 'px'
+    h.style.opacity = '1'
+    h.addEventListener('transitionend', done, { once: true })
+  })
+}
+
+function pickerAfterEnter(el: Element) {
+  const h = el as HTMLElement
+  h.style.height = ''
+  h.style.overflow = ''
+  h.style.transition = ''
+  h.style.opacity = ''
+}
+
+function pickerLeave(el: Element, done: () => void) {
+  const h = el as HTMLElement
+  h.style.height = h.scrollHeight + 'px'
+  h.style.overflow = 'hidden'
+  requestAnimationFrame(() => {
+    h.style.transition = 'height 0.24s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease'
+    h.style.height = '0'
+    h.style.opacity = '0'
+    h.addEventListener('transitionend', done, { once: true })
+  })
+}
+
 async function scrollBottom() {
   await nextTick()
   messagesEl.value?.scrollTo({ top: messagesEl.value.scrollHeight, behavior: 'smooth' })
@@ -88,8 +127,11 @@ onMounted(() => {
   scrollBottom()
   setTimeout(() => {
     isResponding.value = false
-    messages.value.push({ id: 1, role: 'assistant', type: 'text', content: about })
-    scrollBottom()
+    setTimeout(() => {
+      messages.value.push({ id: 1, role: 'assistant', type: 'text', content: about })
+      sectionMessageIds.value['whoami'] = 1
+      scrollBottom()
+    }, 200)
   }, 900)
 })
 
@@ -98,16 +140,32 @@ function togglePicker() {
   if (isPickerOpen.value) scrollBottom()
 }
 
-
-type Option = 'projects' | 'experience' | 'skills' | 'whoami' | 'contact'
+function scrollToSection(opt: Option) {
+  const msgId = sectionMessageIds.value[opt]
+  if (msgId === undefined) return
+  nextTick(() => {
+    const el = document.getElementById(`msg-${msgId}`)
+    if (!el || !messagesEl.value) return
+    const containerRect = messagesEl.value.getBoundingClientRect()
+    const elRect = el.getBoundingClientRect()
+    const top = elRect.top - containerRect.top + messagesEl.value.scrollTop - 80
+    messagesEl.value.scrollTo({ top, behavior: 'smooth' })
+  })
+}
 
 function handleOption(opt: Option) {
   isPickerOpen.value = false
+
+  if (usedOptions.value.has(opt)) {
+    scrollToSection(opt)
+    return
+  }
+
   usedOptions.value.add(opt)
 
   const userText: Record<Option, string> = {
-    projects: 'Show me your projects',
-    experience: 'Show me your experience',
+    projects: 'What projects have you worked on?',
+    experience: 'What is your work experience?',
     skills: 'What are your skills?',
     whoami: props.query,
     contact: 'How can I contact you?',
@@ -119,19 +177,22 @@ function handleOption(opt: Option) {
 
   setTimeout(() => {
     isResponding.value = false
-    const id = Date.now() + 1
-    if (opt === 'projects') {
-      messages.value.push({ id, role: 'assistant', type: 'projects', items: projects })
-    } else if (opt === 'experience') {
-      messages.value.push({ id, role: 'assistant', type: 'experience', items: experience })
-    } else if (opt === 'skills') {
-      messages.value.push({ id, role: 'assistant', type: 'skills', items: skills })
-    } else if (opt === 'contact') {
-      messages.value.push({ id, role: 'assistant', type: 'contact' })
-    } else {
-      messages.value.push({ id, role: 'assistant', type: 'text', content: about })
-    }
-    scrollBottom()
+    setTimeout(() => {
+      const id = Date.now() + 1
+      sectionMessageIds.value[opt] = id
+      if (opt === 'projects') {
+        messages.value.push({ id, role: 'assistant', type: 'projects', items: projects })
+      } else if (opt === 'experience') {
+        messages.value.push({ id, role: 'assistant', type: 'experience', items: experience })
+      } else if (opt === 'skills') {
+        messages.value.push({ id, role: 'assistant', type: 'skills', items: skills })
+      } else if (opt === 'contact') {
+        messages.value.push({ id, role: 'assistant', type: 'contact' })
+      } else {
+        messages.value.push({ id, role: 'assistant', type: 'text', content: about })
+      }
+      scrollBottom()
+    }, 200)
   }, 500)
 }
 </script>
@@ -149,6 +210,7 @@ function handleOption(opt: Option) {
           <div
             v-for="msg in messages"
             :key="msg.id"
+            :id="`msg-${msg.id}`"
             :class="msg.role === 'user' ? 'flex justify-end' : 'flex justify-start'"
           >
             <!-- User bubble -->
@@ -165,7 +227,7 @@ function handleOption(opt: Option) {
               class="max-w-[85%] px-4 py-3.5 rounded-xl bg-card border border-white/5 text-gray-200 text-sm font-mono leading-relaxed"
               style="white-space: pre-line"
             >
-              <TypewriterText :content="(msg as TextMessage).content" />
+              {{ (msg as TextMessage).content }}
             </div>
 
             <!-- Assistant: projects -->
@@ -331,7 +393,7 @@ function handleOption(opt: Option) {
               :key="n"
               aria-hidden="true"
               class="h-1.5 w-1.5 rounded-full bg-primary"
-              :style="{ animation: 'dotBounce 1s ease-in-out infinite', animationDelay: `${(n - 1) * 0.18}s` }"
+              :style="{ animation: 'dotWave 1.8s ease-in-out infinite', animationDelay: `${(n - 1) * 0.32}s` }"
             />
           </div>
         </Transition>
@@ -340,7 +402,7 @@ function handleOption(opt: Option) {
     </div>
 
     <!-- Sticky bottom picker -->
-    <div role="region" aria-label="Chat input" class="shrink-0 border-t border-white/5 bg-surface px-4 pt-3 pb-5">
+    <div role="region" aria-label="Chat input" class="shrink-0 bg-surface px-4 pt-3 pb-5">
       <div class="max-w-2xl mx-auto">
         <div
           class="rounded-xl border bg-card shadow-lg shadow-black/40 overflow-hidden transition-colors duration-200"
@@ -394,7 +456,13 @@ function handleOption(opt: Option) {
           </div>
 
           <!-- Expandable options -->
-          <Transition name="picker-expand">
+          <Transition
+            :css="false"
+            @before-enter="pickerBeforeEnter"
+            @enter="pickerEnter"
+            @after-enter="pickerAfterEnter"
+            @leave="pickerLeave"
+          >
             <div v-if="isPickerOpen" id="option-picker" class="border-t border-white/5">
 
               <!-- Who are you? -->
@@ -424,7 +492,7 @@ function handleOption(opt: Option) {
                 <svg aria-hidden="true" focusable="false" class="w-4 h-4 shrink-0 transition-colors" :class="usedOptions.has('experience') ? 'text-primary/60' : 'text-gray-600 group-hover:text-primary'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('experience') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">Experience</span>
+                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('experience') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">What is your work experience?</span>
                 <svg v-if="usedOptions.has('experience')" aria-label="Asked" focusable="false" class="w-3.5 h-3.5 text-primary/50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -442,7 +510,7 @@ function handleOption(opt: Option) {
                 <svg aria-hidden="true" focusable="false" class="w-4 h-4 shrink-0 transition-colors" :class="usedOptions.has('skills') ? 'text-primary/60' : 'text-gray-600 group-hover:text-primary'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
-                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('skills') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">Skills</span>
+                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('skills') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">What are your skills?</span>
                 <svg v-if="usedOptions.has('skills')" aria-label="Asked" focusable="false" class="w-3.5 h-3.5 text-primary/50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -460,7 +528,7 @@ function handleOption(opt: Option) {
                 <svg aria-hidden="true" focusable="false" class="w-4 h-4 shrink-0 transition-colors" :class="usedOptions.has('projects') ? 'text-primary/60' : 'text-gray-600 group-hover:text-primary'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
-                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('projects') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">Projects</span>
+                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('projects') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">What projects have you worked on?</span>
                 <svg v-if="usedOptions.has('projects')" aria-label="Asked" focusable="false" class="w-3.5 h-3.5 text-primary/50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -478,7 +546,7 @@ function handleOption(opt: Option) {
                 <svg aria-hidden="true" focusable="false" class="w-4 h-4 shrink-0 transition-colors" :class="usedOptions.has('contact') ? 'text-primary/60' : 'text-gray-600 group-hover:text-primary'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('contact') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">Contact</span>
+                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('contact') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">How can I contact you?</span>
                 <svg v-if="usedOptions.has('contact')" aria-label="Asked" focusable="false" class="w-3.5 h-3.5 text-primary/50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -497,14 +565,11 @@ function handleOption(opt: Option) {
   </div>
 </template>
 
-<style scoped>
-.eye-wrapper {
-  display: inline-flex;
-}
-
-@keyframes dotBounce {
-  0%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-5px); }
+<style>
+@keyframes dotWave {
+  0%, 100% { transform: translateY(0px); }
+  30% { transform: translateY(-7px); }
+  60% { transform: translateY(2px); }
 }
 
 @keyframes card-in {
@@ -516,38 +581,33 @@ function handleOption(opt: Option) {
   from { opacity: 0; transform: scale(0.6); }
   to   { opacity: 1; transform: scale(1); }
 }
+</style>
+
+<style scoped>
+.eye-wrapper {
+  display: inline-flex;
+}
 
 .bubble-enter-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1), transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .bubble-enter-from {
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateY(8px) scale(0.97);
 }
 .bubble-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 .bubble-leave-to {
   opacity: 0;
+  transform: translateY(-3px) scale(0.97);
 }
 
 .message-enter-active {
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .message-enter-from {
   opacity: 0;
-  transform: translateY(8px);
-}
-
-.picker-expand-enter-active,
-.picker-expand-leave-active {
-  transition: max-height 0.25s ease, opacity 0.2s ease;
-  max-height: 320px;
-  overflow: hidden;
-}
-.picker-expand-enter-from,
-.picker-expand-leave-to {
-  max-height: 0;
-  opacity: 0;
+  transform: translateY(12px) scale(0.98);
 }
 </style>
