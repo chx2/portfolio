@@ -9,7 +9,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: 'Portfolio',
-    description: 'Personal platform listing experience, projects, and a personal blog.',
+    description: 'Personal platform listing experience, and projects.',
     tech: ['Vue 3', 'TypeScript', 'Tailwind'],
     liveUrl: 'https://chrish.me',
   },
