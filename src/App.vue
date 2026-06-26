@@ -8,7 +8,7 @@ const introQuery = ref('')
 </script>
 
 <template>
-  <ChatIntro v-if="!introComplete" @done="(q) => { introComplete = true; introQuery = q }" />
+  <ChatIntro v-if="!introComplete" @done="(q: string) => { introComplete = true; introQuery = q }" />
 
   <Transition name="main-fade">
     <ChatPortfolio v-if="introComplete" :query="introQuery" />
