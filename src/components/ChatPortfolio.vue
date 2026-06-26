@@ -123,6 +123,9 @@ async function scrollBottom() {
 
 onMounted(() => {
   window.addEventListener('mousemove', onMouseMove)
+
+  const notFoundPath = window.location.pathname !== '/' ? window.location.pathname : null
+
   messages.value.push({ id: 0, role: 'user', type: 'text', content: props.query })
   scrollBottom()
   setTimeout(() => {
@@ -131,6 +134,25 @@ onMounted(() => {
       messages.value.push({ id: 1, role: 'assistant', type: 'text', content: about })
       sectionMessageIds.value['whoami'] = 1
       scrollBottom()
+
+      if (notFoundPath) {
+        setTimeout(() => {
+          isResponding.value = true
+          scrollBottom()
+          setTimeout(() => {
+            isResponding.value = false
+            setTimeout(() => {
+              messages.value.push({
+                id: 2,
+                role: 'assistant',
+                type: 'text',
+                content: `One more thing — it looks like you followed a link to \`${notFoundPath}\`. That page no longer exists here, but you're in the right place.`,
+              })
+              scrollBottom()
+            }, 200)
+          }, 700)
+        }, 800)
+      }
     }, 200)
   }, 900)
 })
