@@ -1,5 +1,7 @@
 // Injects a fully static, JS-free version of the portfolio into index.html at build time.
 // This powers the ?plain view used by crawlers or radical users interested in reader mode — the Vue app never mounts there.
+import fs from 'node:fs'
+import path from 'node:path'
 import type { Plugin } from 'vite'
 import { experience } from '../src/data/experience.ts'
 import { projects } from '../src/data/projects.ts'
@@ -8,8 +10,15 @@ import { about } from '../src/data/about.ts'
 import { contact } from '../src/data/contact.ts'
 
 // String concatenation into raw HTML requires escaping; no template engine is involved here.
-function esc(s: string): string {
+export function esc(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
+
+function extractCssVar(css: string, blockPattern: string, varName: string): string | undefined {
+  const blockMatch = css.match(new RegExp(`${blockPattern}\\s*\\{([^}]+)\\}`))
+  if (!blockMatch) return undefined
+  const varMatch = blockMatch[1].match(new RegExp(`${varName}:\\s*([^;]+);`))
+  return varMatch?.[1].trim()
 }
 
 function generateStaticHtml(): string {
@@ -82,10 +91,28 @@ ${skillsHtml}
 }
 
 export function staticContentPlugin(): Plugin {
+  let root = process.cwd()
+
   return {
     name: 'static-content',
+    configResolved(config) {
+      root = config.root
+    },
     transformIndexHtml(html) {
-      return html.replace('<!-- STATIC_CONTENT -->', generateStaticHtml())
+      const css = fs.readFileSync(path.resolve(root, 'src/style.css'), 'utf-8')
+      const lightBg = extractCssVar(css, ':root', '--color-surface') ?? '#f0f4f8'
+      const darkBg = extractCssVar(css, '\\.dark', '--color-surface') ?? '#0d0f14'
+
+      return {
+        html: html.replace('<!-- STATIC_CONTENT -->', generateStaticHtml()),
+        tags: [
+          {
+            tag: 'style',
+            injectTo: 'head-prepend',
+            children: `html{background-color:${lightBg}}html.dark{background-color:${darkBg}}`,
+          },
+        ],
+      }
     },
   }
 }
