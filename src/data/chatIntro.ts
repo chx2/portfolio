@@ -1,0 +1,30 @@
+export const QUERIES: string[] = [
+  'Who is chris hackett?',
+  'Tell me about chris hackett',
+  'What does chris hackett build?',
+  'Chris hackett portfolio',
+  'What can chris hackett do?',
+  'Describe chris hackett',
+  'Who built this?',
+  'Chris hackett — software engineer',
+  'Launch portfolio for chris hackett',
+  'Introduce me to chris hackett',
+]
+
+export const PROCESSING_PHRASES: string[] = [
+  'Thinking...',
+  'Searching knowledge base...',
+  'Compiling experience...',
+  'Loading personality...',
+  'Resolving dependencies...',
+  'Rendering portfolio...',
+  'Almost there...',
+  'Finalizing results...',
+  'Cross-referencing projects...',
+  'Calibrating responses...',
+  'Fetching career history...',
+  'Building skill tree...',
+  'Processing request...',
+  'Gathering evidence...',
+  'Vibing with the code...',
+]
