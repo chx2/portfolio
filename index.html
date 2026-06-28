@@ -6,9 +6,64 @@
     <link rel="canonical" href="https://chrish.me/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Chris Hackett — Full-stack software engineer. Explore projects, experience, and skills." />
+    <meta name="keywords" content="Chris Hackett, software engineer, full-stack developer, web developer, Vue, TypeScript, JavaScript, PHP, Python, Laravel, Django, React, Tailwind CSS, PostgreSQL, MySQL, Cloudflare Workers, Hono, REST API, IMT Insurance, Trilogy Education, Amplimark" />
+    <meta name="author" content="Chris Hackett" />
+    <meta name="robots" content="index, follow" />
     <title>Chris Hackett — Portfolio</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://chrish.me/" />
+    <meta property="og:title" content="Chris Hackett — Full-Stack Software Engineer" />
+    <meta property="og:description" content="Full-stack software engineer building things for the web. Vue, TypeScript, Python, Laravel and more." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="profile:first_name" content="Chris" />
+    <meta property="profile:last_name" content="Hackett" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Chris Hackett — Full-Stack Software Engineer" />
+    <meta name="twitter:description" content="Full-stack software engineer building things for the web. Vue, TypeScript, Python, Laravel and more." />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Chris Hackett",
+      "url": "https://chrish.me/",
+      "jobTitle": "Full-Stack Software Engineer",
+      "email": "crishack8@gmail.com",
+      "sameAs": [
+        "https://github.com/chx2",
+        "https://linkedin.com/in/crishackett"
+      ],
+      "knowsAbout": [
+        "JavaScript", "TypeScript", "PHP", "Python",
+        "Vue", "React", "Tailwind CSS",
+        "Laravel", "Django", "Hono",
+        "PostgreSQL", "MySQL", "Redis",
+        "Cloudflare Workers", "Docker"
+      ],
+      "hasOccupation": [
+        {
+          "@type": "Occupation",
+          "name": "Full-Stack Developer",
+          "occupationLocation": { "@type": "Organization", "name": "IMT Insurance" },
+          "startDate": "2020"
+        }
+      ]
+    }
+    </script>
+    <style>
+      html.no-plain #static-content { display: none; }
+      html:not(.no-plain) #app { display: none; }
+    </style>
     <script>
       (function () {
+        var isPlain = new URLSearchParams(location.search).get('plain') !== null
+        if (isPlain) return
+        document.documentElement.classList.add('no-plain')
         var stored = localStorage.getItem('theme')
         var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
         if (dark) document.documentElement.classList.add('dark')
@@ -16,6 +71,85 @@
     </script>
   </head>
   <body>
+    <!-- Static HTML content — always in the DOM for crawlers, shown in plain
+         mode (?plain) and when JavaScript is disabled. -->
+    <div id="static-content">
+      <p><a href="/">← Back to full site</a></p>
+
+      <h1>Chris Hackett</h1>
+      <p>Full-Stack Software Engineer</p>
+
+      <h2>About</h2>
+      <p>Hello, I'm Chris — a software engineer who builds things for the web.</p>
+      <p>Experience includes working on projects ranging from small websites to large-scale corporate applications; working with teams ranging from a dozen engineers to solo projects.</p>
+      <p>Project roles have ranged from developer up to planning new features and code review. Building high-quality software that solves real-world problems.</p>
+      <p>I am always looking for new challenges and opportunities to learn and grow as a developer.</p>
+      <p>If you're interested in working with me or just want to say hi, feel free to reach out by contacting me below!</p>
+
+      <h2>Experience</h2>
+
+      <h3>Full-Stack Developer — IMT Insurance</h3>
+      <p>2020 — Present</p>
+      <ul>
+        <li>Building full-stack applications using Vue to tie into backend microservices built in Laravel and Django.</li>
+        <li>Contributing reusable components into in-house component framework to align with brand styling.</li>
+        <li>Using and contributing to internal tooling ranging from local scripting to AI tooling to improve developer experience and productivity.</li>
+        <li>Providing feedback to other developers through a code review process from both a developer and QA perspective.</li>
+        <li>Working with legacy development teams to advocate for modern programming practices.</li>
+      </ul>
+
+      <h3>Teaching Assistant — Trilogy Education</h3>
+      <p>2020 — 2021</p>
+      <ul>
+        <li>Assisting students with coursework in full-stack JavaScript courses.</li>
+        <li>Working with fellow TAs and professor to craft lesson plans.</li>
+        <li>Providing helpful feedback for students through coursework and in-class assignments.</li>
+      </ul>
+
+      <h3>Web Application Developer — Amplimark LLC</h3>
+      <p>2019 — 2020</p>
+      <ul>
+        <li>Converted wireframes/markups into functioning websites and applications.</li>
+        <li>Consulted clients to discuss requirements during application planning phases.</li>
+        <li>Maintained existing client sites and applications through requested layout and functionality updates.</li>
+      </ul>
+
+      <h2>Projects</h2>
+
+      <h3>Portfolio</h3>
+      <p>Personal platform listing experience, and projects.</p>
+      <p>Vue 3, TypeScript, Tailwind — <a href="https://chrish.me" target="_blank" rel="noopener noreferrer">Live site</a></p>
+
+      <h3>Forged In Trivia</h3>
+      <p>A web-based trivia game featuring several game modes and thousands of trivia questions. Questions are sourced from public APIs as well as using local LLM models to parse topic information into trivia questions.</p>
+      <p>Vue 3, TypeScript, Hono, Cloudflare Workers — <a href="https://forgedintrivia.com/" target="_blank" rel="noopener noreferrer">Live site</a></p>
+
+      <h3>Paid Media Support</h3>
+      <p>Job board for Paid Media job listings integrating with third-party job providers alongside OpenAI technology.</p>
+      <p>Vue 3, TypeScript, OpenAI — <a href="https://paidmedia.support" target="_blank" rel="noopener noreferrer">Live site</a></p>
+
+      <h3>Tipoff</h3>
+      <p>Open-source suite for escape rooms including management, online ecommerce, and site/blog support.</p>
+      <p>PHP, Laravel, Vue — <a href="https://github.com/tipoff" target="_blank" rel="noopener noreferrer">Source</a></p>
+
+      <h2>Skills</h2>
+      <dl>
+        <dt>Languages</dt><dd>JavaScript, TypeScript, PHP, Python</dd>
+        <dt>Frontend</dt><dd>Vue 2/3, React, Tailwind CSS, Bootstrap</dd>
+        <dt>Backend</dt><dd>Django, Laravel, Express, Hono, Edge Functions (serverless)</dd>
+        <dt>Databases</dt><dd>PostgreSQL, MySQL, SQLite, Redis</dd>
+        <dt>Tools</dt><dd>Git, Docker, Vite, Cloudflare Workers, Supabase</dd>
+        <dt>Misc</dt><dd>REST, WebSockets, MCP, CI/CD, Agile</dd>
+      </dl>
+
+      <h2>Contact</h2>
+      <p>
+        <a href="mailto:crishack8@gmail.com">crishack8@gmail.com</a><br>
+        <a href="https://github.com/chx2" target="_blank" rel="noopener noreferrer">github.com/chx2</a><br>
+        <a href="https://linkedin.com/in/crishackett" target="_blank" rel="noopener noreferrer">linkedin.com/in/crishackett</a>
+      </p>
+    </div>
+
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

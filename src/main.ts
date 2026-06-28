@@ -1,5 +1,3 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
-
-createApp(App).mount('#app')
+if (document.documentElement.classList.contains('no-plain')) {
+  import('./app')
+}

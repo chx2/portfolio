@@ -427,7 +427,7 @@ function handleOption(opt: Option) {
     <div role="region" aria-label="Chat input" class="shrink-0 bg-surface px-4 pt-3 pb-5">
       <div class="max-w-2xl mx-auto">
         <div
-          class="rounded-xl border bg-card shadow-lg shadow-black/40 overflow-hidden transition-colors duration-200"
+          class="rounded-xl border bg-card shadow-lg shadow-black/40 transition-colors duration-200"
           :class="isPickerOpen ? 'border-primary/30' : 'border-white/10'"
         >
           <!-- Collapsed bar: button + ThemeToggle side by side (not nested) -->
@@ -472,8 +472,25 @@ function handleOption(opt: Option) {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div class="shrink-0 pr-2">
+            <div class="shrink-0 pr-2 flex items-center gap-0.5">
               <ThemeToggle />
+              <div class="relative group/rtip">
+                <a
+                  href="/?plain"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="p-1.5 rounded-lg transition-all duration-200 hover:bg-white/5 active:scale-90 cursor-pointer flex"
+                  aria-label="View plain HTML version"
+                >
+                  <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </a>
+                <span class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover/rtip:opacity-100 transition-opacity duration-150 delay-0 group-hover/rtip:delay-300 whitespace-nowrap text-[11px] font-mono text-gray-400 bg-gray-950 border border-white/10 rounded px-2 py-1 shadow-lg z-10">
+                  Reader view
+                  <span class="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[4px] border-t-gray-950"></span>
+                </span>
+              </div>
             </div>
           </div>
 
@@ -485,7 +502,7 @@ function handleOption(opt: Option) {
             @after-enter="pickerAfterEnter"
             @leave="pickerLeave"
           >
-            <div v-if="isPickerOpen" id="option-picker" class="border-t border-white/5">
+            <div v-if="isPickerOpen" id="option-picker" class="border-t border-white/5 overflow-hidden rounded-b-xl">
 
               <!-- Who are you? -->
               <button
