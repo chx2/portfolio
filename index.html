@@ -58,11 +58,15 @@
     <style>
       html.no-plain #static-content { display: none; }
       html:not(.no-plain) #app { display: none; }
+      html:not(.plain) #static-content .back-link { display: none; }
     </style>
     <script>
       (function () {
         var isPlain = new URLSearchParams(location.search).get('plain') !== null
-        if (isPlain) return
+        if (isPlain) {
+          document.documentElement.classList.add('plain')
+          return
+        }
         document.documentElement.classList.add('no-plain')
         var stored = localStorage.getItem('theme')
         var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -74,7 +78,7 @@
     <!-- Static HTML content — always in the DOM for crawlers, shown in plain
          mode (?plain) and when JavaScript is disabled. -->
     <div id="static-content">
-      <p><a href="/">← Back to full site</a></p>
+      <p class="back-link"><a href="/">← Back to full site</a></p>
 
       <h1>Chris Hackett</h1>
       <p>Full-Stack Software Engineer</p>
