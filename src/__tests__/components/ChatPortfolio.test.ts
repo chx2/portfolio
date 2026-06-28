@@ -50,7 +50,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200) // initial about message
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('projects')
     await advanceAndFlush(800) // 500ms respond + 200ms render
 
@@ -63,7 +63,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('projects')
     await advanceAndFlush(800)
 
@@ -76,7 +76,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('projects')
     await advanceAndFlush(800)
 
@@ -91,7 +91,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('projects')
     await advanceAndFlush(800)
 
@@ -110,7 +110,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('experience')
     await advanceAndFlush(800)
 
@@ -124,7 +124,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('experience')
     await advanceAndFlush(800)
 
@@ -141,7 +141,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('skills')
     await advanceAndFlush(800)
 
@@ -154,7 +154,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('skills')
     await advanceAndFlush(800)
 
@@ -171,7 +171,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('contact')
     await advanceAndFlush(800)
 
@@ -182,7 +182,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('contact')
     await advanceAndFlush(800)
 
@@ -194,7 +194,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('contact')
     await advanceAndFlush(800)
 
@@ -206,7 +206,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('contact')
     await advanceAndFlush(800)
 
@@ -218,7 +218,7 @@ describe('ChatPortfolio', () => {
     const wrapper = mountWithQuery()
     await advanceAndFlush(1200)
 
-    const vm = wrapper.vm as { handleOption: (o: string) => void }
+    const vm = wrapper.vm as unknown as { handleOption: (o: string) => void }
     vm.handleOption('contact')
     await advanceAndFlush(800)
 

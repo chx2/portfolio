@@ -26,7 +26,7 @@ describe('ChatIntro', () => {
     await wrapper.vm.$nextTick()
 
     // After all timers the typed text should be a complete QUERIES entry
-    const vm = wrapper.vm as { typedText: string }
+    const vm = wrapper.vm as unknown as { typedText: string }
     expect(QUERIES).toContain(vm.typedText)
   })
 
@@ -39,7 +39,7 @@ describe('ChatIntro', () => {
     await wrapper.vm.$nextTick()
 
     // After send the cursor is hidden
-    const vm = wrapper.vm as { showCursor: boolean }
+    const vm = wrapper.vm as unknown as { showCursor: boolean }
     expect(vm.showCursor).toBe(false)
   })
 
@@ -49,7 +49,7 @@ describe('ChatIntro', () => {
     vi.runAllTimers()           // complete typing + send + processing
     await wrapper.vm.$nextTick()
 
-    const vm = wrapper.vm as { currentProcessingPhrase: string }
+    const vm = wrapper.vm as unknown as { currentProcessingPhrase: string }
     // The last displayed phrase must be one from the known list
     expect(PROCESSING_PHRASES).toContain(vm.currentProcessingPhrase)
   })
@@ -65,7 +65,7 @@ describe('ChatIntro', () => {
       expect(QUERIES).toContain(query)
     }
     // gsap.to is mocked so onComplete won't fire — just verify the internal state settled
-    const vm = wrapper.vm as { phase: string }
+    const vm = wrapper.vm as unknown as { phase: string }
     expect(['done', 'processing']).toContain(vm.phase)
   })
 })
