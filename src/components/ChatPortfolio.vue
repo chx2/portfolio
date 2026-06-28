@@ -424,7 +424,7 @@ function handleOption(opt: Option) {
     </div>
 
     <!-- Sticky bottom picker -->
-    <div role="region" aria-label="Chat input" class="shrink-0 bg-surface px-4 pt-3 pb-5">
+    <div role="region" aria-label="Chat input" class="shrink-0 bg-surface px-4 pt-3 pb-5" style="padding-bottom: max(1.25rem, env(safe-area-inset-bottom))">
       <div class="max-w-2xl mx-auto">
         <div
           class="rounded-xl border bg-card shadow-lg shadow-black/40 transition-colors duration-200"
@@ -459,7 +459,7 @@ function handleOption(opt: Option) {
                   <circle :cx="8 + pupilOffset.x" :cy="8 + pupilOffset.y" r="1.2" fill="currentColor" />
                 </svg>
               </span>
-              <span class="flex-1 font-mono text-sm text-gray-500 group-hover:text-gray-400 transition-colors">
+              <span class="flex-1 min-w-0 truncate font-mono text-sm text-gray-500 group-hover:text-gray-400 transition-colors">
                 Ask me something&hellip;
               </span>
               <svg
@@ -477,8 +477,6 @@ function handleOption(opt: Option) {
               <div class="relative group/rtip">
                 <a
                   href="/?plain"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   class="p-1.5 rounded-lg transition-all duration-200 hover:bg-white/5 active:scale-90 cursor-pointer flex"
                   aria-label="View plain HTML version"
                 >
@@ -513,7 +511,7 @@ function handleOption(opt: Option) {
                 <svg aria-hidden="true" focusable="false" class="w-4 h-4 shrink-0 transition-colors" :class="usedOptions.has('whoami') ? 'text-primary/60' : 'text-gray-600 group-hover:text-primary'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
-                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('whoami') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">Who are you?</span>
+                <span class="flex-1 min-w-0 truncate font-mono text-sm transition-colors" :class="usedOptions.has('whoami') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">Who are you?</span>
                 <svg v-if="usedOptions.has('whoami')" aria-label="Asked" focusable="false" class="w-3.5 h-3.5 text-primary/50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -531,7 +529,7 @@ function handleOption(opt: Option) {
                 <svg aria-hidden="true" focusable="false" class="w-4 h-4 shrink-0 transition-colors" :class="usedOptions.has('experience') ? 'text-primary/60' : 'text-gray-600 group-hover:text-primary'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('experience') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">What is your work experience?</span>
+                <span class="flex-1 min-w-0 truncate font-mono text-sm transition-colors" :class="usedOptions.has('experience') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">What is your work experience?</span>
                 <svg v-if="usedOptions.has('experience')" aria-label="Asked" focusable="false" class="w-3.5 h-3.5 text-primary/50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -549,7 +547,7 @@ function handleOption(opt: Option) {
                 <svg aria-hidden="true" focusable="false" class="w-4 h-4 shrink-0 transition-colors" :class="usedOptions.has('skills') ? 'text-primary/60' : 'text-gray-600 group-hover:text-primary'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
-                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('skills') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">What are your skills?</span>
+                <span class="flex-1 min-w-0 truncate font-mono text-sm transition-colors" :class="usedOptions.has('skills') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">What are your skills?</span>
                 <svg v-if="usedOptions.has('skills')" aria-label="Asked" focusable="false" class="w-3.5 h-3.5 text-primary/50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -567,7 +565,7 @@ function handleOption(opt: Option) {
                 <svg aria-hidden="true" focusable="false" class="w-4 h-4 shrink-0 transition-colors" :class="usedOptions.has('projects') ? 'text-primary/60' : 'text-gray-600 group-hover:text-primary'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
-                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('projects') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">What projects have you worked on?</span>
+                <span class="flex-1 min-w-0 truncate font-mono text-sm transition-colors" :class="usedOptions.has('projects') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">What projects have you worked on?</span>
                 <svg v-if="usedOptions.has('projects')" aria-label="Asked" focusable="false" class="w-3.5 h-3.5 text-primary/50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -585,7 +583,7 @@ function handleOption(opt: Option) {
                 <svg aria-hidden="true" focusable="false" class="w-4 h-4 shrink-0 transition-colors" :class="usedOptions.has('contact') ? 'text-primary/60' : 'text-gray-600 group-hover:text-primary'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span class="flex-1 font-mono text-sm transition-colors" :class="usedOptions.has('contact') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">How can I contact you?</span>
+                <span class="flex-1 min-w-0 truncate font-mono text-sm transition-colors" :class="usedOptions.has('contact') ? 'text-primary/60' : 'text-gray-300 group-hover:text-gray-100'">How can I contact you?</span>
                 <svg v-if="usedOptions.has('contact')" aria-label="Asked" focusable="false" class="w-3.5 h-3.5 text-primary/50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
