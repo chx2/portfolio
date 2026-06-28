@@ -15,11 +15,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-surface font-mono antialiased;
     color: #9ca3af;
+    overflow-x: hidden;
   }
 
   ::selection {
