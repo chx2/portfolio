@@ -14,7 +14,7 @@ export const skills: SkillGroup[] = [
   },
   {
     category: 'Backend',
-    items: ['Django', 'Laravel', 'Express', 'Hono', 'Edge Functions(serverless)'],
+    items: ['Django', 'Laravel', 'Express', 'Hono', 'AWS Edge Functions(serverless)'],
   },
   {
     category: 'Databases',
@@ -22,10 +22,10 @@ export const skills: SkillGroup[] = [
   },
   {
     category: 'Tools',
-    items: ['Git', 'Docker', 'Vite', 'Cloudflare Workers', 'Supabase'],
+    items: ['Git', 'Docker', 'Vite', 'Cloudflare Workers', 'Supabase', 'WordPress', 'Jest', 'Cypress', 'Playwright'],
   },
   {
     category: 'Misc',
-    items: ['REST', 'WebSockets', 'MCP', 'CI/CD', 'Agile'],
+    items: ['REST', 'WebSockets', 'MCP', 'CI/CD', 'Agile', 'SQS/SNS'],
   },
 ]
